@@ -1,0 +1,8 @@
+Pylint output parser.
+Convert output of pylint to pycharm format.
+
+Example:
+python pylint_pycharm.py sample.py
+
+with virtual path:
+python pylint_pycharm.py sample.py --virtualenv=path/to/virtual_folder
