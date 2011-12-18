@@ -1,8 +1,25 @@
-Pylint output parser.
-Convert output of pylint to pycharm format.
+-------------------------------------------------------------------------------
+Help:
+
+Convert messages from pylint to format supported by PyCharm
+
+Pylint format (with --output-format=parseable)
+sample.py:6: [C] More than one statement on a single line
+
+pylint_pychar format:
+/home/vadim/Projects/pylint-pycharm/sample.py:6:0: [C] More than one statement on a single line
+
+Parameters:
+
+    pylint_pycharm accepets all paramters accepted by pylint. (type pylint --help to see full list)
+
+    --virtualenv=path/to/virtualenv/  - path to virtual environment directory.
+
+Note:
+parameter '--output-format=parseable' is added automatically by pylint_pychar
 
 Example:
-python pylint_pycharm.py sample.py
+    python pylint_pycharm.py sample.py
 
-with virtual path:
-python pylint_pycharm.py sample.py --virtualenv=path/to/virtual_folder
+Example with virtual path:
+    python pylint_pycharm.py sample.py --virtualenv=/home/smith/virtualenv
