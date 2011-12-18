@@ -9,9 +9,9 @@ MESSAGE_PATTERN = r"^(?P<filename>[^:]*):(?P<line_number>\d+): (?P<description>.
 PYCHARM_MESSAGE_FORMAT = "%(full_path)s:%(line_number)s:0: %(description)s"
 
 # TODO read help file from READ ME file
-HELP_TEXT = """
-Always add --output-format=parseable argument
-"""
+HELP_TEXT = "Please read README file for more information"
+HELP_TEXT = open("README").read()
+
 EXCEPTION_MESSAGE_TEMPLATE = "Error: %(error_message)s\n%(help_text)s"
 
 def main(args, stream):
