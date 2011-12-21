@@ -84,7 +84,8 @@ def parse_pylint_args(args):
     """
     remove arguments accepted by this utility and leave only arguments accepted by pylint
     """
-    return [arg for arg in args if arg.startswith("--")]
+    return [arg for arg in args
+            if (arg.startswith("--") and (not arg.startswith("--virtualenv")))]
 
 def format_command_for_process(module_name, pylint_args, virtualenv_path=None):
     """

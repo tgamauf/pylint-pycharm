@@ -117,6 +117,14 @@ class ParsePylintArgsTests(TestCase):
         result = self.parse_pylint_args(args)
         self.assertEquals(result, ["--param1=test", "--param2=test2"])
 
+    def test_success_with_virutalenv(self):
+        """
+        virtualenv should be excluded from list of arguments passed to pylint
+        """
+        args = ["program_name", "--virtualenv=path_to_virtualenv", "module_name1", "--param2=test2"]
+        result = self.parse_pylint_args(args)
+        self.assertEquals(result, ["--param2=test2"])
+
 class FormatCommandForProcessTest(TestCase):
     """
     tests for convert.parse_pylint_args function format_command_for_process
