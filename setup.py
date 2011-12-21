@@ -2,12 +2,12 @@ from distutils.core import setup
 setup(
     name = "pylint_pycharm",
     packages = ["pylint_pycharm"],
-    version = "0.9.3",
+    version = "0.9.4",
     description = "Pylint to Pycharm message converter",
     author = "Wadim Ovcharenko",
     author_email = "wadim@veles-soft.com",
     keywords = ["pylint", "pycharm"],
-    scripts=['pylint_pycharm/pylint_pycharm.py'],
+    scripts=['scripts/pylint-pycharm'],
     classifiers = [
         "Programming Language :: Python",
         "Development Status :: Beta",
@@ -21,7 +21,7 @@ Pylint to Pycharm message converter
 
 Convert messages from pylint report to pycharm format
 
-Pylint format (with --output-format=parseable)
+Pylint format (with --output-format=parseable):
 sample.py:6: [C] More than one statement on a single line
 
 pylint_pychar format:

@@ -17,7 +17,7 @@ class AcceptanceTest(TestCase):
         """
         successful scenario
         """
-        command = "python pylint_pycharm.py sample.py --reports=n"
+        command = "python convertor.py sample.py --reports=n"
         expected_result = "%s/sample.py:6:0: [C] More than one statement on a single line\n" % PROJECT_FOLDER
         pros = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         result = pros.stdout.read()
@@ -25,50 +25,50 @@ class AcceptanceTest(TestCase):
         
 class MainTest(TestCase):
     """
-    tests for main.main function
+    tests for convert.convert function
     """
     def test_success(self):
         """
         successful scenario
         """
-        import pylint_pycharm, StringIO
+        import convertor, StringIO
         io = StringIO.StringIO()
-        args = ["pylint_pycharm.py", "sample.py", "--reports=n",  "--output-format=parseable"]
+        args = ["convertor.py", "sample.py", "--reports=n",  "--output-format=parseable"]
         expected_result = "%s/sample.py:6:0: [C] More than one statement on a single line\n" % PROJECT_FOLDER
-        pylint_pycharm.main(args, io)
+        convertor.convert(args, io)
         result = io.getvalue()
         self.assertEqual(expected_result, result)
 
     def test_error(self):
-        import pylint_pycharm, StringIO
+        import convertor, StringIO
         help_text = "This is help test"
-        pylint_pycharm.HELP_TEXT = help_text
-        original_parse_module_name = pylint_pycharm.parse_module_name
-        pylint_pycharm.parse_module_name = MainTest.parse_module_name_mock
+        convertor.HELP_TEXT = help_text
+        original_parse_module_name = convertor.parse_module_name
+        convertor.parse_module_name = MainTest.parse_module_name_mock
         io = StringIO.StringIO()
-        pylint_pycharm.main([], io)
+        convertor.convert([], io)
         result = io.getvalue()
-        pylint_pycharm.parse_module_name = original_parse_module_name
+        convertor.parse_module_name = original_parse_module_name
         expected_result = "Error: exception\n"+help_text
         self.assertEqual(expected_result, result)
 
 
     @staticmethod
     def parse_module_name_mock(_):
-        from pylint_pycharm import PylintPycharmException
+        from convertor import PylintPycharmException
         raise PylintPycharmException("exception")
 
 
 
 class ParseModuleNameTests(TestCase):
     """
-    tests for function main parse_module_name
+    tests for function convert parse_module_name
     """
 
     def setUp(self):
-        import pylint_pycharm
-        self.parse_module_name = pylint_pycharm.parse_module_name
-        self.PylintPycharmException = pylint_pycharm.PylintPycharmException
+        import convertor
+        self.parse_module_name = convertor.parse_module_name
+        self.PylintPycharmException = convertor.PylintPycharmException
 
     def test_parse_module_name_success(self):
         """
@@ -103,11 +103,11 @@ class ParseModuleNameTests(TestCase):
 
 class ParsePylintArgsTests(TestCase):
     """
-    test of main.parse_pylint_args function
+    test of convert.parse_pylint_args function
     """
     def setUp(self):
-        import pylint_pycharm
-        self.parse_pylint_args = pylint_pycharm.parse_pylint_args
+        import convertor
+        self.parse_pylint_args = convertor.parse_pylint_args
         
     def test_success(self):
         """
@@ -119,12 +119,12 @@ class ParsePylintArgsTests(TestCase):
 
 class FormatCommandForProcessTest(TestCase):
     """
-    tests for main.parse_pylint_args function format_command_for_process
+    tests for convert.parse_pylint_args function format_command_for_process
     """
 
     def setUp(self):
-        import pylint_pycharm
-        self.format_command_for_process = pylint_pycharm.format_command_for_process
+        import convertor
+        self.format_command_for_process = convertor.format_command_for_process
 
     def test_success(self):
         module_name = "module_name"
@@ -143,17 +143,17 @@ class FormatCommandForProcessTest(TestCase):
 
 class ParseOutputTest(TestCase):
     """
-    tests for main.parse_output function
+    tests for convert.parse_output function
     """
     def test_success(self):
         """
         Success scenario
         """
-        import pylint_pycharm
+        import convertor
         root_path = "root_path"
         txt="filename:7: descr1\nsummary"
         expected_result="root_path/filename:7:0: descr1\nsummary"
-        result = pylint_pycharm.parse_output(root_path, txt)
+        result = convertor.parse_output(root_path, txt)
         self.assertEqual(result, expected_result)
 
 

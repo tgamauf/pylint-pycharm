@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 """
 Main module of pylint-pycharm project
@@ -11,11 +11,11 @@ MESSAGE_PATTERN = r"^(?P<filename>[^:]*):(?P<line_number>\d+): (?P<description>.
 PYCHARM_MESSAGE_FORMAT = "%(full_path)s:%(line_number)s:0: %(description)s"
 
 HELP_TEXT = "Please read README file for more information"
-HELP_TEXT = open(os.path.join("..", "README")).read()
+# HELP_TEXT = open(os.path.join("..", "README")).read()
 
 EXCEPTION_MESSAGE_TEMPLATE = "Error: %(error_message)s\n%(help_text)s"
 
-def main(args, stream):
+def convert(args, out_stream):
     """
     Enter point to the program
     """
@@ -43,9 +43,9 @@ def main(args, stream):
 
         #parse result
         output_text = parse_output(root_path, pylint_output)
-        stream.write(output_text)
+        out_stream.write(output_text)
     except PylintPycharmException as ex:
-        stream.write(EXCEPTION_MESSAGE_TEMPLATE %
+        out_stream.write(EXCEPTION_MESSAGE_TEMPLATE %
                      {"error_message": ex.message, "help_text": HELP_TEXT})
 
 def pop_arg_from_list(args, name):
@@ -120,4 +120,4 @@ class PylintPycharmException(Exception):
     pass
 
 if __name__ == "__main__":
-    main(sys.argv, sys.stdout)
+    convert(sys.argv, sys.stdout)
