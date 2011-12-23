@@ -22,6 +22,17 @@ class AcceptanceTest(TestCase):
         pros = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         result = pros.stdout.read()
         self.assertEqual(result, expected_result)
+
+    def test_folder_success(self):
+        """
+        successful scenario
+        """
+        command = "python convertor.py sample_package --reports=n"
+        expected_result = "%s/sample_package/sample_module.py:6:0: [C] More than one statement on a single line\n" % PROJECT_FOLDER
+        pros = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        result = pros.stdout.read()
+        self.assertEqual(result, expected_result)
+
         
 class MainTest(TestCase):
     """
@@ -163,6 +174,23 @@ class ParseOutputTest(TestCase):
         expected_result="root_path/filename:7:0: descr1\nsummary"
         result = convertor.parse_output(root_path, txt)
         self.assertEqual(result, expected_result)
+
+class GetRootPathTest(TestCase):
+    """
+    test of get_root_path function
+    """
+
+    def test_path_is_file(self):
+        from convertor import get_root_path
+        folder = get_root_path("sample.py")
+        expected = PROJECT_FOLDER
+        self.assertEqual(expected, folder)
+
+    def test_path_is_directory(self):
+        from convertor import get_root_path
+        folder = get_root_path("sample_package")
+        expected = "%s/sample_package" % PROJECT_FOLDER
+        self.assertEqual(expected, folder)
 
 
 if __name__ == "__main__":

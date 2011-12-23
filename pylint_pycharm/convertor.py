@@ -48,6 +48,12 @@ def convert(args, out_stream):
         out_stream.write(EXCEPTION_MESSAGE_TEMPLATE %
                      {"error_message": ex.message, "help_text": HELP_TEXT})
 
+def get_root_path(module_name):
+    if os.path.isfile(module_name):
+        return os.path.abspath(os.path.dirname(module_name))
+    else:
+        return os.path.abspath(module_name)
+
 def pop_arg_from_list(args, name):
     new_args = []
     result = None
