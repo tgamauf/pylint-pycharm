@@ -1,30 +1,34 @@
-from distutils.core import setup
+from setuptools import setup
+
 setup(
-    name = "pylint_pycharm",
-    packages = ["pylint_pycharm"],
-    version = "0.9.6",
-    description = "Pylint to Pycharm message converter",
-    author = "Wadim Ovcharenko",
-    author_email = "wadim@veles-soft.com",
-    keywords = ["pylint", "pycharm"],
-    scripts=['scripts/pylint-pycharm'],
-    classifiers = [
+    name="pylint_pycharm",
+    packages=["pylint_pycharm"],
+    version="1.0.0a0",
+    description="Pylint to Pycharm message converter",
+    author="Wadim Ovcharenko",
+    author_email="wadim@veles-soft.com",
+    url="https://github.com/perses76/pylint-pycharm",
+    keywords=["pylint", "pycharm"],
+    install_requires=["pylint"],
+    tests_require=["mock"],
+    entry_points={
+        'console_scripts': ['pylint-pycharm=pylint_pycharm.__main__:main']
+    },
+    classifiers=[
         "Programming Language :: Python",
-        "Development Status :: Beta",
+        "Development Status :: Stable",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)",
         "Operating System :: OS Independent",
-        ],
-    long_description = """\
-Pylint to Pycharm message converter
--------------------------------------
-
-Convert messages from pylint report to pycharm format
-
-Pylint format (with --output-format=parseable):
-sample.py:6: [C] More than one statement on a single line
-
-pylint_pychar format:
-/home/vadim/Projects/pylint-pycharm/sample.py:6:0: [C] More than one statement on a single line
-"""
+    ],
+    long_description=\
+        """
+        Pylint to Pycharm message converter.
+        -------------------------------------
+        
+        Convert messages from Pylint report to Pycharm format.
+        """,
+    test_suite='tests',
+    use_2to3=True,
+    zip_safe=True
 )
