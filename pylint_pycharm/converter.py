@@ -130,7 +130,7 @@ def _format_pylint_command(modules, pylint_args, virtualenv_path=None):
     command = "%s %s %s" % (PYLINT_COMMAND, modules_str, args_str)
 
     if virtualenv_path:
-        activate_venv_command = os.path.join(virtualenv_path, "bin", "activate")
+        activate_venv_command = os.path.join(virtualenv_path, "activate")
         deactivate_venv_command = "deactivate"
         command = ". %s && %s && %s" % (activate_venv_command,
                                         command,
