@@ -1,25 +1,25 @@
--------------------------------------------------------------------------------
-Help:
+# Pylint-Pycharm
 
-Convert messages from pylint to format supported by PyCharm
+Pylint-Pycharm is a wrapper around Pylint that formats file paths in the Pylint output in a way that Pycharm understands. This allows you to go to the occurence of a finding dirctly by clicking on the provided link.
 
-Pylint format (with --output-format=parseable)
-sample.py:6: [C] More than one statement on a single line
+The tool accepts the directory of a virtual environment as parameter and requires the paths of one or more Python files as input. The Python files/modules and all additional command line parameters are handed over to Pylint.
 
-pylint_pychar format:
-/home/vadim/Projects/pylint-pycharm/sample.py:6:0: [C] More than one statement on a single line
+## Setup
+* Install Pylint via pip: `pip install --user pylint`
+* Install Pylint-Pycharm:
+```
+git clone https://github.com/perses76/pylint-pycharm.git
+cd pylint-pycharm
+python setup.py install
+```
+* Setup Pylint-Pycharm as an external tool in Pycharm:
+** `File\Settings`, then `Tools\External Tools`
+** Add tool by pressing '+'
+** Use the following settings:
+*** Program: path to your installation of pylint-pycharm  
+*** Arguments: --virtualenv=$PyInterpreterDirectory$ $FilePath$
+*** Working directory: $ProjectFileDir$ 
+*** Advanced Options\Output Filters: $FILE_PATH$\:$LINE$\:$COLUMN$\:.*
 
-Parameters:
-
-    pylint_pycharm accepets all paramters accepted by pylint. (type pylint --help to see full list)
-
-    --virtualenv=path/to/virtualenv/  - path to virtual environment directory.
-
-Note:
-parameter '--output-format=parseable' is added automatically by pylint_pychar
-
-Example:
-    python pylint_pycharm.py sample.py
-
-Example with virtual path:
-    python pylint_pycharm.py sample.py --virtualenv=/home/smith/virtualenv
+After setup you can execute Pylint-Pycharm through `Tools\External Tools\Pylint-Pycharm
+    
