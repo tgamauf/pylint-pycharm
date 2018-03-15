@@ -1,6 +1,6 @@
 # Pylint-Pycharm
 
-Pylint-Pycharm is a wrapper around Pylint that formats file paths in the Pylint output in a way that Pycharm understands. This allows you to go to the occurence of a finding dirctly by clicking on the provided link.
+Pylint-Pycharm is a wrapper around Pylint that formats file paths in the Pylint output in a way that Pycharm can parse. This allows you to go to finding directly by clicking on the provided link.
 
 The tool accepts the directory of a virtual environment as parameter and requires the paths of one or more Python files as input. The Python files/modules and all additional command line parameters are handed over to Pylint.
 
