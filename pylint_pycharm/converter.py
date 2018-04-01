@@ -132,7 +132,10 @@ def _format_pylint_command(modules, pylint_args, virtualenv_path=None):
     if virtualenv_path:
         activate_venv_command = os.path.join(virtualenv_path, "activate")
         deactivate_venv_command = "deactivate"
-        command = ". %s && %s && %s" % (activate_venv_command,
+
+        # There is no source command in windows, "activate" is simply a script
+        command = "%s%s && %s && %s" % ('. ' if os.name != 'nt' else '',
+                                        activate_venv_command,
                                         command,
                                         deactivate_venv_command)
 
