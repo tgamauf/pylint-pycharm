@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name="pylint_pycharm",
     packages=["pylint_pycharm"],
-    version="1.0.0a0",
+    version="1.0.0",
     description="Pylint to Pycharm message converter",
     author="Wadim Ovcharenko",
     author_email="wadim@veles-soft.com",
@@ -16,9 +16,15 @@ setup(
     },
     classifiers=[
         "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
         "Development Status :: Stable",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)",
+        "License :: OSI Approved :: MIT",
         "Operating System :: OS Independent",
     ],
     long_description=\

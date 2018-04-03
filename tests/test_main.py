@@ -1,7 +1,10 @@
 """ Tests for __main__. """
 
 from unittest import TestCase, main
-from mock.mock import patch
+try:
+    from unittest.mock import patch
+except ImportError:
+    from mock.mock import patch
 
 import pylint_pycharm.__main__
 from pylint_pycharm.converter import PylintPycharmError
