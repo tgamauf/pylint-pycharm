@@ -1,7 +1,10 @@
 """ Tests for converter. """
 
 from unittest import TestCase, main
-from mock.mock import patch
+try:
+    from unittest.mock import patch
+except ImportError:
+	from mock.mock import patch
 import os.path
 
 import pylint_pycharm.converter as converter
@@ -73,7 +76,7 @@ class TestPylintPycharm(TestCase):
         converter.PYLINT_COMMAND = "pylint"
         test_modules = ["/a/file.py", "c/d"]
         test_pylint_args = ["--test=a", "-t=b"]
-        test_virtualenv_path = "venv"
+        test_virtualenv_path = "venv/bin"
 
         cmd = converter._format_pylint_command(test_modules, test_pylint_args)
         self.assertEqual(cmd, "pylint /a/file.py c/d --test=a -t=b")
