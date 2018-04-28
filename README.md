@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tgamauf/pylint-pycharm.svg?branch=master)](https://travis-ci.org/tgamauf/pylint-pycharm)
+
 # Pylint-Pycharm
 
 Pylint-Pycharm is a wrapper around Pylint that formats file paths in the Pylint output in a way that Pycharm can parse. This allows you to go to finding directly by clicking on the provided link.
